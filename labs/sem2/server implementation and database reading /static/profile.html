@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Server & Database Reading</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <a href="/logout">Log Out</a>
+
+        <div id="user_profile">
+            <img width="250" height="250" id="picture">
+            <h2 id="username">Username</h2>
+            <h2>Files</h2>
+            <div id="user_files">
+                <p>file name</p>
+                <p>file name</p>
+                <p>file name</p>
+                <p>file name</p>
+            </div>
+        </div>
+
+        <form method="post" action="/profile">
+            <h3>Update password</h3>
+            <input type="password" placeholder="New password" name="password">
+            <input type="submit" value="password" name="action">
+        </form>
+
+        <form method="post" action="/profile">
+            <h3>Edit picture</h3>
+            <input type="file" placeholder="Edit picture" name="picture">
+            <input type="submit" value="picture" name="action">
+        </form>
+
+        <form method="post" action="/files">
+            <h3>Upload File</h3>
+            <input type="file" placeholder="Upload file" name="file">
+            <input type="submit" value="upload" name="action">
+        </form>
+    </body>
+</html>

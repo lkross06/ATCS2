@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <style>
+            input#show_password {
+                display: none
+            }
+            input#show_password + label {
+                border: 1px solid black;
+                padding: 4px;
+                border-radius: 2px;
+                user-select: none;
+            }
+
+            input[type="checkbox"]:checked + label {
+                background-color: #cdcdcd;
+            }
+        </style>
+    </head>
+    <body>  
+        <form action="/crypto/symmetric" method="POST">
+            <h2>Encryption/Decryption</h2>
+            <br>
+
+            <select name="cipher" id="cipher">
+                <option selected disabled value="">-- Choose a Cipher --</option>
+                <option value="caesar">Caesar</option>
+                <option value="vigenere">Vigenere</option>
+            </select>
+
+            <select name="mode">
+                <option selected disabled value="">-- Choose a Mode --</option>
+                <option value="encrypt">Encrypt</option>
+                <option value="decrypt">Decrypt</option>
+            </select>
+
+            <br>
+            <br>
+
+            <textarea name="message" rows="5" cols="35" placeholder="Enter your message..."></textarea>
+
+            <br>
+            <br>
+
+            <input type="password" name="password" id="password" placeholder="Enter password..." maxlength="50">
+
+            <input type="checkbox" id="show_password" name="show_password" value="show">
+            <label for="show_password">show</label>
+
+            <br>
+            <br>
+
+            <button type="submit" id="submit">Submit</button>
+        </form>
+
+            <script>
+                let passbox = document.getElementById("password")
+                let toggle = -1
+
+                document.getElementById("show_password").addEventListener("click", function(e){
+                    toggle *= -1 // make password show-able
+
+                    if (toggle == -1){
+                        passbox.setAttribute("type", "password")
+                    } else if (toggle == 1){
+                        passbox.setAttribute("type", "text")
+                    }
+                })
+            </script>
+        
+    </body>
+</html>

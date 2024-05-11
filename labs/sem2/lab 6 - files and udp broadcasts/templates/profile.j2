@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sessions & Databases</title>
+        <link rel="stylesheet" href="../static/style.css">
+        <style>
+            #user_profile {
+                border: 1px solid black;
+                width: 40vw;
+                padding: 1%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            #avatar {
+                border: 1px solid black;
+                border-radius: 100%;
+            }
+
+            #user_files {
+                overflow-y: scroll;
+                overflow-x: hidden;
+                height: 10vh;
+                width: 30vw;
+                padding: 0;
+                margin: 1%;
+                border: 1px solid black;
+            }
+
+            .user_filename {
+                border-bottom: 1px solid black;
+                margin: 0%;
+                padding: 2%;
+                display: block;
+                width: 100%;
+            }
+
+            .user_filename * {
+                display: inline;
+            }
+
+            #options {
+                width: 60vw;
+            }
+
+            .delete-file-buttons {
+                height: auto;
+                display: inline;
+                font-size: small;
+            }
+        </style>
+    </head>
+    <body>
+        <form method="post" action="/logout">
+            <input type="submit" value="logout" name="action">
+        </form>
+
+        <div id="container">
+            <div id="user_profile">
+                <img width="250" height="250" id="avatar" src="../{{profile.avatar}}">
+                <h2 id="username">{{profile.username}}</h2>
+                {% if profile.fname != None and profile.lname != None %}
+                    <p id="name">{{profile.fname}} {{profile.lname}}</p>
+                {% endif %}
+                <div id="user_files">
+                    {% for file in files %}
+                        <span class="user_filename">
+                            <p><a href="/{{profile.username}}/file/download/{{file}}">{{file}}</a></p>
+
+                            {% if show_options %}
+                            <form class="delete-file-buttons" action="/{{profile.username}}/file/delete/{{file}}" method="post"><input type="submit" value="X"></form>
+                            {% endif %}
+                        </span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            {% if show_options %}
+
+                <div id="options">
+                    <h2>Profile Settings</h2>
+
+                    <form method="post" action="/{{profile.username}}/profile" enctype="multipart/form-data">
+                        <h3>Edit picture</h3>
+                        <input type="file" placeholder="Edit picture" name="picture" accept="image/*" required>
+                        <input type="submit" value="picture" name="action">
+                    </form>
+
+                    <form method="post" action="/{{profile.username}}/profile">
+                        <h3>Edit Name</h3>
+                        <input type="text" placeholder="First name" name="fname" required>
+                        <input type="text" placeholder="Last name" name="lname" required>
+                        <input type="submit" value="name" name="action">
+                    </form>
+
+                    <form method="post" action="/{{profile.username}}/file/upload" enctype="multipart/form-data">
+                        <h3>Upload File</h3>
+                        <input type="file" placeholder="Upload file" name="file" required>
+                        <input type="submit" value="upload" name="action">
+                    </form>
+
+                    <h2>Account Settings</h2>
+
+                    <form method="post" action="/{{profile.username}}/profile">
+                        <h3>Update password</h3>
+                        <input type="password" placeholder="New password" name="password" required>
+                        <input type="submit" value="password" name="action">
+                    </form>
+
+                    <form method="post" action="/{{profile.username}}/profile/delete">
+                        <h3>Delete Profile</h3>
+                        <input type="text" placeholder="Type username to confirm" name="confirmation" width="200px" required>
+                        <input type="submit" value="delete" name="action">
+                    </form>
+
+                </div>
+
+            {% endif %}
+        </div>
+    </body>
+</html>

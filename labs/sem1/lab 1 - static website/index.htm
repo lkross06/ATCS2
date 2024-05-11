@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <link href="style.css" rel="stylesheet">
+        <style>
+            #header{
+                background-image: url("img/hero.jpg");
+                background-color: var(--light2);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                height: 100vh;
+            }
+
+            #header h1, h2{
+                user-select: none;
+            }
+
+            #intro{
+                position: absolute;
+                top: 4%;
+                left: 3%;
+                color: var(--light2);
+                font-size: var(--title1);
+                text-shadow: -1px 0 var(--light1), 0 1px var(--light1), 1px 0 var(--light1), 0 -1px var(--light1);
+            }
+
+            #portrait{
+                position: absolute;
+                top: 75%;
+                left: 85%;
+            }
+
+            #portrait img{
+                border-radius: 30vh;
+                width: 90%;
+                height: 90%;
+                border: 1px solid var(--light1);
+            }
+
+            #portrait img:hover{
+                transform: scale(1.1);
+            }
+
+            #name{
+                position: absolute;
+                top: 60%;
+                left: 70%;
+                color: var(--light2);
+                font-size: var(--title2);
+                text-shadow: -1px 0 var(--light1), 0 1px var(--light1), 1px 0 var(--light1), 0 -1px var(--light1);
+            }
+
+            .project {
+                background-color: var(--light2);
+                display: flex;
+                align-items: center;
+                margin: 8vh 8vw 0vh 8vw;
+                padding: 2vh 2vw;
+                border-radius: 2vh;
+                display: flex;
+                flex-direction: row;
+            }
+
+            .project img{
+                width: 35%;
+                height: 35%;
+                border-radius: inherit;
+            }
+
+            .project span{
+                color: var(--dark2);
+                padding: inherit;
+                flex-grow: 3;
+            }
+
+            .project span h3{
+                font-size: var(--title2);
+            }
+
+            .project span p{
+                font-size: var(--text1);
+                overflow-y: hidden;
+            }
+
+            .project > p:hover{
+                transform: scale(1.2);
+            }
+
+            .project > p a{
+                text-decoration: none;
+                color: var(--dark2);
+                font-size: var(--title1);
+            }
+
+        </style>
+        <title>Lucas Kalani Ross Portfolio</title>
+    </head>
+    <body>
+        <header id="header">
+            <h1 id="intro">Adv. Topics in CS<br>Portfolio</h1>
+            <a href="contact.htm" id="portrait"><img src="img/portrait.jpg" alt="Lucas Ross Portrait"></a>
+            <h2 id="name">Lucas Kalani Ross</h2>
+        </header>
+        <div class="project">
+            <img src="img/hero.jpg" alt="Project Image">
+            <span>
+                <h3>Lab 1: Static Website</h3>
+                <p>Created the first set of pages for a digital portfolio, including introduction page and contacts page.</p>
+            </span>
+            <p><a href="index.htm">></a></p>
+        </div>
+        <div class="project">
+            <img src="img/hero.jpg" alt="Project Image">
+            <span>
+                <h3>Project</h3>
+                <p>Description</p>
+            </span>
+            <p><a href="index.htm">></a></p>
+        </div>
+        <div class="project">
+            <img src="img/hero.jpg" alt="Project Image">
+            <span>
+                <h3>Project</h3>
+                <p>Description</p>
+            </span>
+            <p><a href="index.htm">></a></p>
+        </div>
+        <div class="project">
+            <img src="img/hero.jpg" alt="Project Image">
+            <span>
+                <h3>Project</h3>
+                <p>Description</p>
+            </span>
+            <p><a href="index.htm">></a></p>
+        </div>
+        <div class="project">
+            <img src="img/hero.jpg" alt="Project Image">
+            <span>
+                <h3>Project</h3>
+                <p>Description</p>
+            </span>
+            <p><a href="index.htm">></a></p>
+        </div>
+    </body>
+</html>

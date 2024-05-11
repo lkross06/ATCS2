@@ -1,0 +1,25 @@
+* {
+    margin: 0px;
+    --light1: #D2D1CB;
+    --light2: #757572;
+    --link: #1e1e5d;
+    --dark1: #303330;
+    --dark2: #262927;
+    --title1: 5em;
+    --title2: 4em;
+    --text1: 2em;
+    --text2: 1.5em;
+}
+
+body{
+    background-color: var(--light1);
+}
+
+@media screen and (max-width: 1000px){
+    *{
+        --title1: 3em;
+        --title2: 2em;
+        --text1: 1em;
+        --text2: 0.75em;
+    }
+}

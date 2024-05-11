@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <style>
+
+            input[type="radio"] {
+                display: none;
+            }
+
+            div#cd {
+                padding: 20px;
+                height: 10%;
+                overflow-y: hidden;
+            }
+
+            div#cd label {
+                border: 1px solid black;
+                background-color: white;
+                padding: 4px;
+                border-radius: 2px;
+                user-select: none;
+            }
+
+            div#cd input[type="radio"]:checked + label {
+                background-color: #cdcdcd;
+            }
+            /* ------------------ */
+            /* makes text/image CD disappear/reappear */
+            input#cd_imagechoice + label + div * {
+                display: none;
+            }
+
+            input#cd_imagechoice:checked + label + div * {
+                display: block;
+            }
+
+            input#cd_textchoice + label + div * {
+                display: none;
+            }
+
+            input#cd_textchoice:checked + label + div * {
+                display: block;
+            }
+            
+            div.cd_choice {
+                position: absolute;
+                padding: 1vh 1vw;
+                margin: 1vh 1vw;
+            }
+            /* ------------------ */
+
+            textarea#cd_textin {
+                resize: vertical;
+            }
+
+            div#spacer {
+                height: 30%;
+            }
+
+            .imgdata_img {
+                height: 200px;
+            }
+
+            .imgdata {
+                margin-top: 20px;
+            }
+
+        </style>
+        <script>
+            window.onload = function(){
+                document.getElementById("cd_imagein").addEventListener("input", (e) => {
+                    update_imgdata(e.target, "id1")
+                })
+
+                document.getElementById("host").addEventListener("input", (e) => {
+                    update_imgdata(e.target, "id2")
+                })
+            }
+
+            function update_imgdata(input, id){
+                let preview = document.getElementById(id + "_img")
+                let info = document.getElementById(id + "_data")
+
+                let fr = new FileReader()
+                let file = input.files[0]
+
+                if (file != null){
+                    fr.onload = function(){
+                        preview.src = fr.result
+                        console.log(preview)
+                        // preview.setAttribute("height", "200px")
+
+                    }
+                    fr.readAsDataURL(file)
+
+                }
+            }
+        </script>
+    </head>
+    <body>  
+        <form action="/crypto/steg" method="POST" enctype="multipart/form-data">
+            <h2>Client Data</h2>
+
+            <!-- cd = client data -->
+            <div id="cd">
+                <!-- text choice for cd -->
+                <input type="radio" name="cd" value="text" id="cd_textchoice" checked>
+                <label for="cd_textchoice">Text</label>
+                <div id="cd_text" class="cd_choice"> 
+                    <textarea id="cd_textin" name="cd_textin" rows="5" cols="35" placeholder="Enter your message..."></textarea>
+                </div>
+
+                <!-- image choice for cd -->
+                <input type="radio" name="cd" value="image" id="cd_imagechoice">
+                <label for="cd_imagechoice">Image</label>
+                <div id="cd_image" class="cd_choice">
+                    <input type="file" name="cd_imagein" id="cd_imagein" accept="image/png, image/jpeg">
+                    <!-- imgdata = preview + info of selected jpg/png -->
+                    <div class="imgdata" id="id1">
+                        <img class="imgdata_img" id="id1_img"></img>
+                        <div class="imgdata_data" id="id1_data"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="spacer"></div>
+            
+            <h2>Host Image</h2>
+            <input type="file" class="filein" id="host" name="host" accept="image/png, image/jpeg">
+            <!-- imgdata = preview + info of selected jpg/png -->
+            <div class="imgdata" id="id2">
+                <img class="imgdata_img" id="id2_img"></img>
+                <div class="imgdata_data" id="id2_data"></div>
+            </div>
+
+            <br>
+            <br>
+
+            <button type="submit" id="submit">Submit</button>
+        </form>
+    </body>
+</html>

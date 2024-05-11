@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <title>Minesweeper Leaderboard</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                text-align: center;
+            }
+
+            h1 {
+                color: #000000;
+            }
+
+            table {
+                width: 70vw;
+                margin: auto;
+            }
+
+            th, td {
+                padding: 1vh 1vw;
+                text-align: center;
+            }
+
+            th {
+                background-color: #2a2a2a;
+                color: #fff;
+            }
+
+            tr:nth-child(odd) td {
+                background-color: #efefef;
+            }
+
+            tr:hover td {
+                background-color: #cccccc;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Minesweeper Leaderboard</h1>
+        <table>
+            <tr>
+                <th>Ranking</th>
+                <th>Name</th>
+                <th>Wins</th>
+                <th>Losses</th>
+                <th>Average Time</th>
+                <th>Average Score</th>
+            </tr>
+            {% for item in items %}
+                <tr class="json">
+                    <td><strong>{{item.ranking}}</strong></td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.wins}}</td>
+                    <td>{{item.losses}}</td>
+                    <td>{{item.avg_time}}</td>
+                    <td>{{item.avg_score}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>
